@@ -1,0 +1,50 @@
+function zjot() {
+	source ~/.config/zjot/source
+        if [ "$ZJOT_CONFIG_ROOT" == "" ]; then zjot.die ; return 1; fi
+        if [ "$ZJOT_CONFIG_NAME" == "" ]; then zjot.die ; return 2; fi
+
+	ROOT=$ZJOT_CONFIG_ROOT
+	NAME=$ZJOT_CONFIG_NAME
+	ACC=`find $ROOT -name $NAME`
+	
+	case .$1 in
+		.cat)  
+			cat $ACC 
+			;;
+		.norm) 
+			cat $ACC | sed 's!\([:T0-9\-]*\)*!& [zjot]!'  
+			;;
+		.new)  
+			now=`date "+%Y-%m-%d-T-%H:%M:%S"` 
+			tail $ACC
+			echo -------------------------------------
+			echo -n \>
+			read LINE
+			#[ "$LINE" == "" ] || echo `now` "$LINE" >> $ACC
+			[ "$LINE" == "" ] || echo $now "$LINE" >> $ACC
+			tail $ACC
+			echo -------------------------------------
+			echo log written at $ACC
+			;;
+		.*) 
+			echo "zjot -- a note taking and retrieval system."
+			echo "usage:"
+			echo "    $THIS cat"
+			echo "    $THIS norm"
+			echo "    $THIS new"
+			;;
+	esac
+}
+
+function zjot.die () { cat << HERE
+
+	zjot : Environment Exception.
+
+	Check that the following environment variables
+        	ZJOT_CONFIG_ROOT 
+        	ZJOT_CONFIG_NAME 
+	are set by the configuration file ~/.config/zjot/source. 
+
+HERE
+}   
+
