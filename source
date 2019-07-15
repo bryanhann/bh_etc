@@ -1,0 +1,9 @@
+function require () {
+    source ~/.local/etc/bh/require/$1
+}
+
+function _test () {
+    require marco
+    [ "`marco`" == polo ] && echo [pass] require && return 0
+    echo [fail] require && return 1
+}
