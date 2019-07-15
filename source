@@ -10,3 +10,4 @@ function _test () {
 }
 
 require zjot
+require bh

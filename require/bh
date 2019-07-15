@@ -1,0 +1,3 @@
+function bh () {
+	echo bh says 'hello'. More coming soon.
+}
