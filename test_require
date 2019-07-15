@@ -1,6 +1,6 @@
 [ -f $0 ] || exit # ignore this file if sourced
 [ ! "$0" == "./test_require" ] && echo "try ./test_require" && exit
-[ ! "$PWD" == ~/.local/etc/bh ] && echo "repo must be cloned to ~/.local/etc/bin" && exit
+[ ! "$PWD" == ~/.local/etc/bh ] && echo "repo must be cloned to ~/.local/etc/bh" && exit
 
 source ./source
 
