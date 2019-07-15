@@ -1,0 +1,44 @@
+function go_doc () {
+cat <<HELPDOC
+usage: 
+    go help   
+    go list              # list marks
+    go mark TARGET NAME  # mark the target directory with NAME
+    go cd NAME         # shortcut for go cd NAME if NAME is not a command
+HELPDOC
+echo $1
+}
+
+function go () {
+    PREFIX=.tmp.go.
+    case .$1 in 
+        .)
+            go_doc
+            ;;
+        .help)
+            go_doc
+            ;;
+        .list)
+            eval `find $2 -name ${PREFIX}\* | sed "s/\(.*\)\(.tmp.go.\)\(.*\)/ alias go.\3='pushd \1' ; /"`
+            ;;
+        .mark)
+            [ "$3" == "" ] && go_doc "missing parameter" && return
+            [ ! -d $2    ] && go_doc "bad TARGET =[$2] " && return
+            pushd $2
+            rm $PWD/${PREFIX}*  2> ~/.deleteme
+            touch $PWD/${PREFIX}$3 
+            go list $PWD
+            popd
+            ;;
+        .mark2)
+            [ "$3" == "" ] && go_doc "missing parameter" && return
+            [ ! -d $2    ] && go_doc "bad TARGET =[$2] " && return
+            rm $2/${PREFIX}*  2> ~/.deleteme
+            touch $2/${PREFIX}$3 
+            go list $2
+            ;;
+        .*)
+            eval go.$1
+            ;;
+    esac
+}

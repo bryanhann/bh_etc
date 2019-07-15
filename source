@@ -1,5 +1,1 @@
 function require () { source ~/.local/etc/bh/require/$1; }
-#source ~/.local/etc/bh/require/.init
-
-require bh
-require zjot

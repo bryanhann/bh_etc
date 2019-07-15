@@ -1,0 +1,5 @@
+
+# trap exit if not in subshell, because having your term disappear is annoying.
+[ "$MUSE_PPID" == "" ] && export MUSE_PPID=$PPID
+function exit() { [ "$MUSE_PPID" == "$PPID" ] && echo Try \'builtin exit\' || builtin exit; }
+

@@ -1,0 +1,5 @@
+# configure prompt to show git info and to indicate depth of subshell
+source $HOME/.git-prompt.sh
+PROMPT_COMMAND='__git_ps1 "[$MUSE_DEPTH] [\w]" "\\\$ "'
+PS1=$PROMPT_COMMAND
+export MUSE_DEPTH=$(( MUSE_DEPTH + 1 ))
