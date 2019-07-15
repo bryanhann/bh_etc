@@ -1,13 +1,5 @@
-echo [$0] [$*]
-function require () {
-    source ~/.local/etc/bh/require/$1
-}
+function require () { source ~/.local/etc/bh/require/$1; }
+#source ~/.local/etc/bh/require/.init
 
-function _test () {
-    require marco
-    [ "`marco`" == polo ] && echo [pass] require && return 0
-    echo [fail] require && return 1
-}
-
-require zjot
 require bh
+require zjot

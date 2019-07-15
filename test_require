@@ -1,5 +1,9 @@
 [ -f $0 ] || exit # ignore this file if sourced
-[ ! "$0" == "./test.sh" ] && echo "try ./test.sh" && exit
+[ ! "$0" == "./test_require" ] && echo "try ./test_require" && exit
 [ ! "$PWD" == ~/.local/etc/bh ] && echo "repo must be cloned to ~/.local/etc/bin" && exit
+
 source ./source
-_test
+
+require marco
+
+[ `marco` == polo ] && echo pass || echo fail
