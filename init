@@ -1,0 +1,14 @@
+function require () { 
+	if [ "$1" == "" ]; then
+                echo usage: require NAME
+                echo
+                echo effectuates: \'source \~/.local/etc/require/source/NAME\'
+	elif [ -f ~/.local/etc/require/source/$1 ]; then
+		source ~/.local/etc/require/source/$1 
+
+	elif [ -f ~/.local/etc/require/source/$1/source ]; then
+		source ~/.local/etc/require/source/$1/source
+        else
+		echo require\(\) -- error: cannot source [$*]
+	fi	
+}

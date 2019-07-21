@@ -1,8 +1,8 @@
 [ -f $0 ] || exit # ignore this file if sourced
 [ ! "$0" == "./test_require" ] && echo "try ./test_require" && exit
-[ ! "$PWD" == ~/.local/etc/bh ] && echo "repo must be cloned to ~/.local/etc/bh" && exit
+[ ! "$PWD" == ~/.local/etc/require ] && echo "repo must be cloned to ~/.local/etc/require" && exit
 
-source ./source
+source ./init
 
 require marco
 
