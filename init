@@ -6,8 +6,8 @@ function require () {
 	elif [ -f ~/.local/etc/require/source/$1 ]; then
 		source ~/.local/etc/require/source/$1 
 
-	elif [ -f ~/.local/etc/require/source/$1/source ]; then
-		source ~/.local/etc/require/source/$1/source
+	elif [ -f ~/.local/etc/require/source/$1/init ]; then
+		source ~/.local/etc/require/source/$1/init
         else
 		echo require\(\) -- error: cannot source [$*]
 	fi	
